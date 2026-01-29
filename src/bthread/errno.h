@@ -25,7 +25,9 @@
 #include <errno.h>                    // errno
 #include "butil/errno.h"               // berror(), DEFINE_BTHREAD_ERRNO
 
-__BEGIN_DECLS
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 extern int *bthread_errno_location();
 
@@ -37,6 +39,8 @@ extern int *bthread_errno_location();
 // List errno used throughout bthread
 extern const int ESTOP;
 
-__END_DECLS
+#ifdef __cplusplus
+}
+#endif
 
 #endif  //BTHREAD_ERRNO_H

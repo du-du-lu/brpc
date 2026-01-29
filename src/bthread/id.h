@@ -25,7 +25,9 @@
 #include "butil/macros.h"              // BAIDU_SYMBOLSTR
 #include "bthread/types.h"
 
-__BEGIN_DECLS
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 // ----------------------------------------------------------------------
 // Functions to create 64-bit identifiers that can be attached with data
@@ -161,7 +163,9 @@ int bthread_id_list_reset_pthreadsafe(
 int bthread_id_list_reset_bthreadsafe(
     bthread_id_list_t* list, int error_code, bthread_mutex_t* mutex);
 
-__END_DECLS
+#ifdef __cplusplus
+}
+#endif
 
 #if defined(__cplusplus)
 // cpp specific API, with an extra `error_text' so that error information

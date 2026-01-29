@@ -128,7 +128,9 @@ static inline int bthread_sem_post(bthread_sem_t* sem, size_t num) {
 
 } // namespace bthread
 
-__BEGIN_DECLS
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 int bthread_sem_init(bthread_sem_t* sem, unsigned value) {
     sem->butex = bthread::butex_create_checked<unsigned>();
@@ -170,4 +172,6 @@ int bthread_sem_post_n(bthread_sem_t* sem, size_t n) {
     return bthread::bthread_sem_post(sem, n);
 }
 
-__END_DECLS
+#ifdef __cplusplus
+}
+#endif

@@ -29,7 +29,9 @@
 #include <dispatch/dispatch.h>    // dispatch_semaphore
 #include <errno.h>                // EINVAL
 
-__BEGIN_DECLS
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 // Implement pthread_spinlock_t for MAC.
 struct pthread_spinlock_t {
@@ -60,7 +62,9 @@ inline int pthread_spin_unlock(pthread_spinlock_t *__lock) {
     return dispatch_semaphore_signal(__lock->sem);
 }
 
-__END_DECLS
+#ifdef __cplusplus
+}
+#endif
 
 #elif defined(OS_LINUX)
 
@@ -72,7 +76,9 @@ __END_DECLS
 
 #endif // defined(OS_MACOSX)
 
-__BEGIN_DECLS
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 inline uint64_t pthread_numeric_id() {
 #if defined(OS_MACOSX)
@@ -86,6 +92,8 @@ inline uint64_t pthread_numeric_id() {
 #endif
 }
 
-__END_DECLS
+#ifdef __cplusplus
+}
+#endif
 
 #endif // BUTIL_COMPAT_H

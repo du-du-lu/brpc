@@ -34,7 +34,9 @@
 //   functions if you're not ready to change your code according to newer
 //   versions of bthread.
 
-__BEGIN_DECLS
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 // Schedule tasks created by BTHREAD_NOSIGNAL
 extern void bthread_flush();
@@ -140,6 +142,8 @@ extern void bthread_keytable_pool_reserve(
     bthread_keytable_pool_t* pool, size_t nfree,
     bthread_key_t key, void* ctor(const void* args), const void* args);
 
-__END_DECLS
+#ifdef __cplusplus
+}
+#endif
 
 #endif  // BTHREAD_UNSTABLE_H

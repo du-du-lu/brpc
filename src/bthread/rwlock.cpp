@@ -292,7 +292,9 @@ static inline int rwlock_unlock(bthread_rwlock_t* rwlock) {
 
 } // namespace bthread
 
-__BEGIN_DECLS
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 int bthread_rwlock_init(bthread_rwlock_t* __restrict rwlock,
                         const bthread_rwlockattr_t* __restrict) {
@@ -365,4 +367,6 @@ int bthread_rwlock_unlock(bthread_rwlock_t* rwlock) {
     return bthread::rwlock_unlock(rwlock);
 }
 
-__END_DECLS
+#ifdef __cplusplus
+}
+#endif

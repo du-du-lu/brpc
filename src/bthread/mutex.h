@@ -26,7 +26,9 @@
 #include "butil/scoped_lock.h"
 #include "bvar/utils/lock_timer.h"
 
-__BEGIN_DECLS
+#ifdef __cplusplus
+extern "C" {
+#endif
 extern int bthread_mutex_init(bthread_mutex_t* __restrict mutex,
                               const bthread_mutexattr_t* __restrict attr);
 extern int bthread_mutex_destroy(bthread_mutex_t* mutex);
@@ -36,7 +38,9 @@ extern int bthread_mutex_timedlock(bthread_mutex_t* __restrict mutex,
                                    const struct timespec* __restrict abstime);
 extern int bthread_mutex_unlock(bthread_mutex_t* mutex);
 extern bthread_t bthread_self(void);
-__END_DECLS
+#ifdef __cplusplus
+}
+#endif
 
 namespace bthread {
 

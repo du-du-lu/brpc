@@ -49,7 +49,9 @@ DEFINE_bool(reuse_addr, true, "Enable SO_REUSEADDR for all listened sockets");
 
 DEFINE_bool(reuse_uds_path, false, "remove unix domain socket file before listen to it");
 
-__BEGIN_DECLS
+#ifdef __cplusplus
+extern "C" {
+#endif
 int BAIDU_WEAK bthread_connect(
     int sockfd, const struct sockaddr *serv_addr, socklen_t addrlen) {
     return ::connect(sockfd, serv_addr, addrlen);
@@ -59,7 +61,9 @@ int BAIDU_WEAK bthread_timed_connect(
     int sockfd, const struct sockaddr* serv_addr,
     socklen_t addrlen, const timespec* abstime);
 
-__END_DECLS
+#ifdef __cplusplus
+}
+#endif
 
 #include "butil/details/extended_endpoint.hpp"
 

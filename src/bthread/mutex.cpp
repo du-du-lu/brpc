@@ -48,9 +48,13 @@
 #include "bthread/processor.h"
 #include "bthread/task_group.h"
 
-__BEGIN_DECLS
+#ifdef __cplusplus
+extern "C" {
+#endif
 extern void* BAIDU_WEAK _dl_sym(void* handle, const char* symbol, void* caller);
-__END_DECLS
+#ifdef __cplusplus
+}
+#endif
 
 namespace bthread {
 
@@ -1182,7 +1186,9 @@ bool FastPthreadMutex::timed_lock(const struct timespec* abstime) {
 
 } // namespace bthread
 
-__BEGIN_DECLS
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 int bthread_mutex_init(bthread_mutex_t* __restrict m,
                        const bthread_mutexattr_t* __restrict attr) {
@@ -1327,4 +1333,6 @@ int pthread_mutex_unlock(pthread_mutex_t* mutex) {
 #endif // NO_PTHREAD_MUTEX_HOOK
 
 
-__END_DECLS
+#ifdef __cplusplus
+}
+#endif

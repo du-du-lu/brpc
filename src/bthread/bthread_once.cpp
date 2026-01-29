@@ -72,10 +72,14 @@ int bthread_once_impl(bthread_once_t* once_control, void (*init_routine)()) {
 
 } // namespace bthread
 
-__BEGIN_DECLS
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 int bthread_once(bthread_once_t* once_control, void (*init_routine)()) {
     return bthread::bthread_once_impl(once_control, init_routine);
 }
 
-__END_DECLS
+#ifdef __cplusplus
+}
+#endif

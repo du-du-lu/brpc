@@ -48,7 +48,9 @@ std::string stack_trace(bthread_t tid);
 } // namespace bthread
 #endif // __cplusplus && BRPC_BTHREAD_TRACER
 
-__BEGIN_DECLS
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 // Create bthread `fn(args)' with attributes `attr' and put the identifier into
 // `tid'. Switch to the new thread and schedule old thread to run. Use this
@@ -429,6 +431,8 @@ extern int bthread_once(bthread_once_t* once_control, void (*init_routine)());
  */
 extern uint64_t bthread_cpu_clock_ns(void);
 
-__END_DECLS
+#ifdef __cplusplus
+}
+#endif
 
 #endif  // BTHREAD_BTHREAD_H
