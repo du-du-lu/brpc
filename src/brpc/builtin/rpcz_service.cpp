@@ -462,7 +462,7 @@ static int64_t ParseDateTime(const std::string& time_str) {
             microseconds = 999999;
         }
     }
-    return timelocal(&timeinfo) * 1000000L + microseconds;
+    return static_cast<int64_t>(mktime(&timeinfo)) * 1000000L + microseconds;
 }
 
 static bool ParseUint64(const std::string* str, uint64_t* val) {
