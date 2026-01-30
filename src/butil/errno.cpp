@@ -52,7 +52,7 @@ int DescribeCustomizedErrno(
             return -1;
         }
     } else {
-#if defined(OS_MACOSX)
+#if defined(OS_MACOSX) || !defined(__GLIBC__)
         const int rc = strerror_r(error_code, tls_error_buf, ERROR_BUFSIZE);
         if (rc != EINVAL)
 #else
