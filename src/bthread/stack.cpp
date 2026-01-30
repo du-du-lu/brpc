@@ -54,10 +54,10 @@ static bvar::PassiveStatus<int64_t> bvar_stack_count(
     "bthread_stack_count", get_stack_count, NULL);
 
 int allocate_stack_storage(StackStorage* s, int stacksize_in, int guardsize_in) {
-    const static int PAGESIZE = getpagesize();
-    const int PAGESIZE_M1 = PAGESIZE - 1;
-    const int MIN_STACKSIZE = PAGESIZE * 2;
-    const int MIN_GUARDSIZE = PAGESIZE;
+    const static int PAGESIZE_ = getpagesize();
+    const int PAGESIZE_M1 = PAGESIZE_ - 1;
+    const int MIN_STACKSIZE = PAGESIZE_ * 2;
+    const int MIN_GUARDSIZE = PAGESIZE_;
 
     // Align stacksize
     const int stacksize =
@@ -104,7 +104,7 @@ int allocate_stack_storage(StackStorage* s, int stacksize_in, int guardsize_in) 
         void* aligned_mem = (void*)(((intptr_t)mem + PAGESIZE_M1) & ~PAGESIZE_M1);
         if (aligned_mem != mem) {
             LOG_ONCE(ERROR) << "addr=" << mem << " returned by mmap is not "
-                "aligned by pagesize=" << PAGESIZE;
+                "aligned by pagesize=" << PAGESIZE_;
         }
         const int offset = (char*)aligned_mem - (char*)mem;
         if (guardsize <= offset ||

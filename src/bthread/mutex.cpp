@@ -19,7 +19,6 @@
 
 // Date: Sun Aug  3 12:46:15 CST 2014
 
-#include <sys/cdefs.h>
 #include <pthread.h>
 #include <dlfcn.h>                               // dlsym
 #include <fcntl.h>                               // O_RDONLY
