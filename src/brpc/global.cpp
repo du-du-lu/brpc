@@ -97,7 +97,7 @@
 #include "brpc/server.h"
 #include "brpc/trackme.h"             // TrackMe
 #include "brpc/details/usercode_backup_pool.h"
-#if defined(OS_LINUX)
+#if defined(OS_LINUX) && defined(__GLIBC__)
 #include <malloc.h>                   // malloc_trim
 #endif
 #include "butil/fd_guard.h"
@@ -292,7 +292,7 @@ static void* GlobalUpdate(void*) {
             if (MallocExtension_ReleaseFreeMemory != NULL) {
                 MallocExtension_ReleaseFreeMemory();
             } else {
-#if defined(OS_LINUX)
+#if defined(OS_LINUX) && defined(__GLIBC__)
                 // GNU specific.
                 malloc_trim(10 * 1024 * 1024/*leave 10M pad*/);
 #endif
