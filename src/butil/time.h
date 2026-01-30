@@ -22,6 +22,10 @@
 #ifndef BUTIL_BAIDU_TIME_H
 #define BUTIL_BAIDU_TIME_H
 
+#ifndef _POSIX_C_SOURCE
+#define _POSIX_C_SOURCE 200809L
+#endif
+
 #include <time.h>                            // timespec, clock_gettime
 #include <sys/time.h>                        // timeval, gettimeofday
 #include <stdint.h>                          // int64_t, uint64_t

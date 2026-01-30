@@ -79,7 +79,7 @@ const char* berror(int error_code) {
         if (s) {
             return s;
         }
-#if defined(OS_MACOSX)
+#if defined(OS_MACOSX) || !defined(__GLIBC__)
         const int rc = strerror_r(error_code, butil::tls_error_buf, butil::ERROR_BUFSIZE);
         if (rc == 0 || rc == ERANGE/*bufsize is not long enough*/) {
             return butil::tls_error_buf;
